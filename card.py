@@ -1,10 +1,13 @@
-from enum import Enum, auto
+# from enum import Enum, auto
+# import enum
 
 # class CardSuit(Enum):
 #     CLUBS = 1
 #     DIAMONDS = 2
 #     HEARTS = 3
 #     SPADES = 4
+
+# class CardValue(enum):
 
 class Card:
     def __init__(self, suit, value):
@@ -21,5 +24,17 @@ class Card:
         card = self.names[self.getValue()]  + ' of ' + self.suitNames[self.getSuit()]
         return str(card)
 
-card = Card(3, 1)
-print(card)
+class CardDeck:
+    def __init__(self):
+        pass
+    def shuffle (self):
+        pass
+    def getCard(self):
+        pass
+    def size(self):
+        pass
+    def reset(self):
+        pass
+
+# card = Card(3, 1)
+# print(card)
