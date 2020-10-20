@@ -1,13 +1,4 @@
-# from enum import Enum, auto
-# import enum
-
-# class CardSuit(Enum):
-#     CLUBS = 1
-#     DIAMONDS = 2
-#     HEARTS = 3
-#     SPADES = 4
-
-# class CardValue(enum):
+import random
 
 class Card:
     def __init__(self, suit, value):
@@ -15,26 +6,39 @@ class Card:
         self._suit = suit
         self._value = value
         self.suitNames = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
-        self.names = ['Ace','Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
+        self.names = ['Ace','Deuce', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
+    
     def getValue(self):
         return self._value
+   
     def getSuit(self):
         return self._suit
     def __str__(self):
-        card = self.names[self.getValue()]  + ' of ' + self.suitNames[self.getSuit()]
-        return str(card)
+        return "%s of %s" %(self.names[self.getValue()-1], self.suitNames[self.getSuit()-1])
+
 
 class CardDeck:
-    def __init__(self):
-        pass
+    def __init__(self): 
+        self.reset()
+    
     def shuffle (self):
-        pass
-    def getCard(self):
-        pass
+        random.shuffle(self._cards)
+   
+    def getCard(self):  
+        return self._cards.pop()
+   
     def size(self):
-        pass
+        return len(self._cards)
+    
     def reset(self):
-        pass
+        self._cards = []
+        for s in range(1, 5):
+            for n in range(1, 14):
+                self._cards.append(Card(s, n))
 
-# card = Card(3, 1)
-# print(card)
+deck = CardDeck()
+deck.shuffle()
+
+while deck.size()>0:
+    card = deck.getCard()
+    print("Card {} has value {}".format(card, card.getValue()))
